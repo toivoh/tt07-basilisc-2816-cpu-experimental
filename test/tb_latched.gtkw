@@ -1,25 +1,29 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Sun May 26 07:18:34 2024
+[*] Sat Jun  1 06:06:38 2024
 [*]
-[dumpfile] "/home/toivo/code/tinytapeout/tt07-basilisc-2816-cpu/test/tb.vcd"
-[dumpfile_mtime] "Sun May 26 07:16:45 2024"
-[dumpfile_size] 54635261
-[savefile] "/home/toivo/code/tinytapeout/tt07-basilisc-2816-cpu/test/tb.gtkw"
-[timestart] 137450000
-[size] 2463 1372
+[dumpfile] "/home/toivo/code/tinytapeout/tt07-basilisc-2816-cpu-OL2/test/tb.vcd"
+[dumpfile_mtime] "Sat Jun  1 06:06:37 2024"
+[dumpfile_size] 55626362
+[savefile] "/home/toivo/code/tinytapeout/tt07-basilisc-2816-cpu-OL2/test/tb_latched.gtkw"
+[timestart] 306340000
+[size] 2943 1861
 [pos] -1 -1
-*-23.000000 179890000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-23.000000 340270000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb.
 [treeopen] tb.top.
 [treeopen] tb.top.cpu.
 [treeopen] tb.top.cpu.dec.
 [treeopen] tb.top.cpu.dec.sched.
 [treeopen] tb.top.cpu.mem_if.
+[treeopen] tb.top.cpu.pref.
+[treeopen] tb.top.cpu.pref.fifo.
+[treeopen] tb.top.cpu.pref.fifo.genblk1[0].
+[treeopen] tb.top.cpu.pref.fifo.genblk1[1].
 [sst_width] 297
 [signals_width] 268
 [sst_expanded] 1
-[sst_vpaned_height] 430
+[sst_vpaned_height] 601
 @28
 tb.rst_n
 tb.clk
@@ -101,7 +105,7 @@ tb.top.cpu.dec.sched.alu.scan_in[1:0]
 tb.top.cpu.dec.sched.alu.update_reg1
 @22
 tb.top.cpu.dec.sched.alu.reg_index[3:0]
-@29
+@28
 tb.top.cpu.dec.sched.alu.scan_out[1:0]
 @200
 -
@@ -125,7 +129,6 @@ tb.top.cpu.dec.src1_from_pc
 tb.top.cpu.dec.use_rotate
 tb.top.cpu.dec.use_shr
 tb.top.cpu.dec.use_mul
-tb.top.cpu.dec.mul_only
 tb.top.cpu.dec.feed_imm8
 tb.top.cpu.dec.next_imm_data
 @200
@@ -266,6 +269,65 @@ tb.top.cpu.pref.last_entry[15:0]
 tb.top.cpu.pref.pc_data_out[1:0]
 @200
 -
+-SRFIFO_latched
+@28
+tb.top.cpu.pref.fifo.invalidate[1:0]
+@22
+tb.top.cpu.pref.fifo.last_entry[15:0]
+@28
+tb.top.cpu.pref.fifo.last_valid
+@22
+tb.top.cpu.pref.fifo.new_entry[15:0]
+@200
+-
+@28
+tb.top.cpu.pref.fifo.we[1:0]
+tb.top.cpu.pref.fifo.sampling_in[2:0]
+@200
+-
+@28
+tb.top.cpu.pref.fifo.can_add
+tb.top.cpu.pref.fifo.add
+@22
+tb.data0[15:0]
+tb.top.cpu.pref.fifo.new_entry[15:0]
+tb.data1[15:0]
+tb.data2[15:0]
+tb.top.cpu.pref.fifo.last_entry[15:0]
+@28
+tb.top.cpu.pref.fifo.valid[2:0]
+tb.top.cpu.pref.fifo.remove
+@200
+-
+@29
+tb.top.cpu.pref.fifo.genblk1[0].register.we_reg
+@28
+tb.top.cpu.pref.fifo.genblk1[0].register.gate
+tb.top.cpu.pref.fifo.genblk1[1].register.gate
+tb.top.cpu.pref.fifo.genblk1[1].register.we_reg
+@200
+-
+@28
+tb.top.cpu.pref.num_prefetched[1:0]
+tb.top.cpu.pref.num_flushed[1:0]
+@200
+-
+@28
+tb.top.cpu.pref.sreg_full
+@22
+tb.top.cpu.pref.sreg[15:0]
+@28
+tb.top.cpu.pref.inst_reg_valid
+@22
+tb.top.cpu.pref.inst_reg[15:0]
+@200
+-
+@28
+tb.top.cpu.pref.load_imm16
+@22
+tb.top.cpu.pref.imm_reg[15:0]
+@200
+-
 -ALU
 @28
 tb.top.cpu.dec.sched.alu.reverse_args
@@ -295,19 +357,6 @@ tb.top.cpu.dec.sched.flag_z
 -
 @28
 tb.top.cpu.dec.sched.alu.do_mul
-@22
-tb.top.cpu.dec.sched.alu.partial[10:0]
-tb.top.cpu.dec.sched.alu.p_factor[7:0]
-@28
-tb.top.cpu.dec.sched.alu.s_factor_in[1:0]
-tb.top.cpu.dec.sched.alu.mul_carry_in
-tb.top.cpu.dec.sched.alu.s_factor_1[2:0]
-tb.top.cpu.dec.sched.alu.s_factor_code[1:0]
-tb.top.cpu.dec.sched.alu.minus1
-tb.top.cpu.dec.sched.alu.next_carry_mul
-@22
-tb.top.cpu.dec.sched.alu.mul_sum[10:0]
-@28
 tb.top.cpu.dec.sched.alu.mul_result[1:0]
 @200
 -

@@ -1,41 +1,41 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
+![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+Basilisc-2816 v0.1: Small 2-bit serial 8/16 bit CPU for Tiny Tapeout 7
+======================================================================
+Basilisc-2816 v0.1 is a small 2-bit serial 2/8/16 bit processor that fits into one Tiny Tapeout tile.
+The CPU has been designed around the constraints of
 
-- [Read the documentation for project](docs/info.md)
+- small area,
+- 4 pin serial memory interface to a RAM emulator implemented in a RP2040 microcontroller, which can be supported by the RP2040 microcontroller on the Tiny Tapeout 06 Demo Board.
 
-## What is Tiny Tapeout?
+and a later version is intended to be included in the next version of the AnemoneGrafx-8 retro console https://github.com/toivoh/tt06-retro-console (motivating the constraints).
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+Features:
 
-To learn more and get started, visit https://tinytapeout.com.
+- 2-bit serial execution:
+	- ALU operations etc are calculated 2 bits/cycle
+	- 2-bit-serial register file with two read/write ports realized as a bank of shift registers
+	- Saves area compared to processing 8/16 bits per cycle
+	- No point in calculating faster than the memory interface allows
+- 8x 8-bit registers that can be paired into 4x 16-bit registers
+- 16 bits/instruction (some instructions might take an additional 16 bit immediate)
+- 64 kB address space
+- Quite regular and orthogonal instruction encoding
+- Many addressing modes
+- Variable shift instructions
+- 8x8 and 8x16 bit multiply instructions, producing 2 result bits per cycle like everything else
+- 13 branch conditions + relative call
+- Instruction prefetch queue
 
-## Set up your Verilog project
+This is the v0.1c experimental version, which
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+- is hardened using OpenLane 2,
+- uses latches for the prefetch queue and instruction register,
+- includes the `mul` instruction, and
+- has a prefetch queue of 4 instruction words.
 
-The GitHub action will automatically build the ASIC files using [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/).
+The usage of latches is experimental, but allows to pack in more features.
+The v0.1a version can be found at https://github.com/toivoh/tt07-basilisc-2816-cpu.
+The v0.1b version can be found at https://github.com/toivoh/tt07-basilisc-2816-cpu-OL2.
 
-## Enable GitHub actions to build the results page
-
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
-
-## Resources
-
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://docs.google.com/document/d/1aUUZ1jthRpg4QURIIyzlOaPWlmQzr-jBn3wZipVUPt4)
-
-## What next?
-
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
+For more details, see https://github.com/toivoh/tt07-basilisc-2816-cpu/blob/main/docs/info.md.
